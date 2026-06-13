@@ -38,4 +38,12 @@ if file is not None:
 
     vector_db = FAISS.from_texts(chunks,embeddings)
 
-    
+    user_query = st.text_input("Type your query here")
+
+    if user_query:
+        matching_chunks = vector_db.similarity_search(user_query)
+
+        llm = ChatOllama(
+            model="llama3",
+            temperature=0
+        )
