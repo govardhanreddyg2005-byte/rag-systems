@@ -23,7 +23,6 @@ if file is not None:
     for page in read_pdf.pages:
         text+=page.extract_text()
 
-
     text_splitting = RecursiveCharacterTextSplitter(
         separators=["\n\n","\n","."],
         chunk_size = 300,
