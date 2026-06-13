@@ -47,3 +47,22 @@ if file is not None:
             model="llama3",
             temperature=0
         )
+
+        customized_prompt = ChatPromptTemplate.from_messages([
+            """
+            You are my assistant tutor.Answer the question based on the provided
+            context and if you did not get the context simply say "I Don't have enough
+            information to generate answer."
+            {context}
+
+            Question:
+            {input}
+
+            """
+        ])
+
+        stuff_chain = create_stuff_documents_chain(llm, customized_prompt)
+
+        response = stuff_chain.invoke({"input":user_query,"context":matching_chunks})
+        st.write(response)
+
