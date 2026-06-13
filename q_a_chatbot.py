@@ -30,6 +30,12 @@ if file is not None:
     )
 
     chunks = text_splitting.split_text(text)
-    
+
+    embeddings = OllamaEmbeddings(
+        model="nomic-embed-text",
+        temperature=0
+    )
+
+    vector_db = FAISS.from_texts(chunks,embeddings)
 
     
