@@ -30,42 +30,6 @@ if file is not None:
     )
 
     chunks = text_splitting.split_text(text)
+    
 
-    embedding_model = OllamaEmbeddings(model="nomic-embed-text")
-
-    #Creating a vector store and storing as embeddings
-    db = FAISS.from_texts(chunks,embedding_model)
-
-    user_query = st.text_input("Type your query here")
-
-
-    if user_query:
-        matching_chunks=db.similarity_search(user_query)
-
-        llm = ChatOllama(
-            model="llama3",
-            temperature=0
-        )
-
-
-        customized_prompt = ChatPromptTemplate.from_messages([
-            """
-            You are my assistant tutor.
-            Answer the user question based on the following
-
-            context:
-            {context}
-
-            Question:
-            {input}
-            
-            """
-        ])
-
-        stuff_chain = create_stuff_documents_chain(
-            llm, customized_prompt
-        )
-
-        response = stuff_chain.invoke({"input":user_query,"context":matching_chunks})
-        st.write(response)
-
+    
