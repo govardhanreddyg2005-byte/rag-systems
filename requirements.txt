@@ -1,0 +1,11 @@
+# To install all your packages in your terminal listed below
+# USE pip install -r requirements.txt
+
+streamlit
+PyPDF2
+langchain
+langchain-community
+langchain-text-splitters
+langchain-ollama
+langchain-openai
+
